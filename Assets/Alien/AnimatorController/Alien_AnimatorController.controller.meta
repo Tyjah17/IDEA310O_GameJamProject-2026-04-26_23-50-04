@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6e3627213f925884abef3ff2ae2cb2e4
+timeCreated: 1460389444
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 60491
+  packageName: Alien
+  packageVersion: 1.0
+  assetPath: Assets/Alien/AnimatorController/Alien_AnimatorController.controller
+  uploadId: 112509

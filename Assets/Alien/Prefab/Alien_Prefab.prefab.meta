@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 99c0d93c26b1e9945956a60c51c142a5
+timeCreated: 1460461422
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 60491
+  packageName: Alien
+  packageVersion: 1.0
+  assetPath: Assets/Alien/Prefab/Alien_Prefab.prefab
+  uploadId: 112509
