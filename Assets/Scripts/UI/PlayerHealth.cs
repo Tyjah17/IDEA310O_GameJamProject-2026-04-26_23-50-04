@@ -24,19 +24,7 @@ public class PlayerHealth : MonoBehaviour {
         if (health <= 0)
             Die();
     }
-
-    public void Heal(int amount)
-    {
-        health += amount;
-
-        if (health > maxHealth)
-        {
-            health = maxHealth;
-        }
-
-        UpdateHearts();
-    }
-
+    
     void UpdateHearts() {
         for (int i = 0; i < hearts.Length; i++) {
             if (i < health){
@@ -46,7 +34,7 @@ public class PlayerHealth : MonoBehaviour {
             }
         }
     }
-
+    
     void Die() {
         gameUI.ShowGameOver();
     }

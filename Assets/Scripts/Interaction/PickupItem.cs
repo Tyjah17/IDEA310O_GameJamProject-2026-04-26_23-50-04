@@ -6,8 +6,7 @@ public class PickupItem : MonoBehaviour
         Generic,
         Flashlight,
         Key,
-        Heart,
-        Battery
+        Gun
     }
 
     [Header("Item Info")]
@@ -24,7 +23,7 @@ public class PickupItem : MonoBehaviour
 
     private PlayerHealth player;
 
-    public void OnPickup(Hotbar hotbar, Flashlight flashlight)
+    public void OnPickup(Hotbar hotbar, Flashlight flashlight, Gun gun)
     {
         switch (itemType)
         {
@@ -51,16 +50,17 @@ public class PickupItem : MonoBehaviour
                     batteryHUD.SetActive(true);
                 }
                 break;
-            case ItemType.Heart:
-                PlayerHealth health = player.GetComponent<PlayerHealth>();
-
-                if (health != null && health.health < health.maxHealth)
+            case ItemType.Gun:
+                if (hotbar != null)
                 {
-                    health.Heal(1);
-                    Destroy(gameObject);
+                    hotbar.AddItem(itemName);
+                }
+
+                if (gun != null)
+                {
+                    gun.UnlockGun();
                 }
                 break;
-
             default:
                 if (hotbar != null)
                 {

@@ -7,6 +7,9 @@ public class Door : MonoBehaviour {
     [Header("Key Requirement")]
     public string requiredKeyId = "KeyA";
 
+    [Header("Object To Open")]
+    public GameObject objectToOpen;
+
     public bool RequiresKey() {
         return !string.IsNullOrEmpty(requiredKeyId);
     }
@@ -15,6 +18,6 @@ public class Door : MonoBehaviour {
         if (isOpen)
             return;
         isOpen = true;
-        gameObject.SetActive(false);
+        objectToOpen.SetActive(false);
     }
 }

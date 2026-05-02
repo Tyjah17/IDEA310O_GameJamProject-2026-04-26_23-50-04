@@ -1,12 +1,15 @@
 using UnityEngine;
 using TMPro;
 
+// Handles all Player Interaction throughout games
+
 public class PlayerInteract : MonoBehaviour
 {
     [Header("References")]
     public Camera playerCamera;
     public Hotbar hotbar;
     public Flashlight flashlight;
+    public Gun gun;
 
     [Header("Interaction Settings")]
     public float interactDistance = 3f;
@@ -54,7 +57,7 @@ public class PlayerInteract : MonoBehaviour
         ShowInteractText("Press E to pick up " + pickup.itemName);
 
         if (Input.GetKeyDown(interactKey)) {
-            pickup.OnPickup(hotbar, flashlight);
+            pickup.OnPickup(hotbar, flashlight, gun);
         }
     }
 

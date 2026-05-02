@@ -131,7 +131,7 @@ public class Hotbar : MonoBehaviour {
         {
             keys.Remove(key);
         }
-
+        UpdateHotbar();
         return true;
     }
 }
