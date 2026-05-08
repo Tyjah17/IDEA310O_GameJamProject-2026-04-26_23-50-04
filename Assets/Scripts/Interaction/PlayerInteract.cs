@@ -50,6 +50,20 @@ public class PlayerInteract : MonoBehaviour
             HandleLevelExit(levelExit);
             return;
         }
+        NPCDialogue npc = hit.collider.GetComponentInParent<NPCDialogue>();
+        if (npc != null) {
+            if (!npc.IsTalking()) {
+                ShowInteractText(npc.GetInteractText());
+            } else {
+                HideInteractText();
+            }
+            if (Input.GetKeyDown(interactKey)) {
+                npc.Talk();
+                HideInteractText();
+            }
+
+            return;
+        }
         HideInteractText();
     }
 
