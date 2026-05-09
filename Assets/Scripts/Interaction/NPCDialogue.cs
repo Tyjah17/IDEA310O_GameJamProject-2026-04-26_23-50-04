@@ -50,14 +50,21 @@ public class NPCDialogue : MonoBehaviour {
     }
 
     IEnumerator TypeDialogue() {
-        dialogueUI.text = "";
 
-        foreach (char letter in dialogueText) {
-            dialogueUI.text += letter;
-            yield return new WaitForSeconds(typeSpeed);
+        string[] lines = dialogueText.Split('\n');
+
+        foreach (string line in lines) {
+
+            dialogueUI.text = "";
+
+            foreach (char letter in line) {
+                dialogueUI.text += letter;
+                yield return new WaitForSeconds(typeSpeed);
+            }
+
+            yield return new WaitForSeconds(2f);
         }
 
-        yield return new WaitForSeconds(2f);
         StopTalking();
     }
 
