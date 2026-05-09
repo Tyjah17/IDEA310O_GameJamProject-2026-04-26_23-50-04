@@ -1260,7 +1260,7 @@ GameObject:
   - component: {fileID: 1843449349614867238}
   - component: {fileID: 6883426680087776263}
   m_Layer: 0
-  m_Name: Futuristic_Girl Green
+  m_Name: SpaceSoldierA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1274,8 +1274,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4788318005793258121}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.9961947, z: 0, w: 0.08715588}
-  m_LocalPosition: {x: -0.89, y: 0, z: -3.577}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1283,7 +1283,7 @@ Transform:
   - {fileID: 2415669972186844721}
   - {fileID: 7293243755527905478}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 170, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &907981914389172757
 CapsuleCollider:
   m_ObjectHideFlags: 0
