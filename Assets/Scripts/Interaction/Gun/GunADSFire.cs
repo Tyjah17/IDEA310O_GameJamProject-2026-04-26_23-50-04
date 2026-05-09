@@ -47,7 +47,7 @@ public class GunADSFire : MonoBehaviour {
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         Vector3 targetPoint;
 
-        if (Physics.Raycast(ray, out RaycastHit hit, aimDistance)) {
+        if (Physics.Raycast(ray, out RaycastHit hit, aimDistance, ~0, QueryTriggerInteraction.Ignore)) {
             targetPoint = hit.point;
         } else {
             targetPoint = ray.origin + ray.direction * aimDistance;

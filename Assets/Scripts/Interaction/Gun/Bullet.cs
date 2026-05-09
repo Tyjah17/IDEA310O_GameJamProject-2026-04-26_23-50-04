@@ -1,16 +1,14 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
+public class Bullet : MonoBehaviour {
+
+    public float lifeTime = 3f;
+
+    void Start() {
+        Destroy(gameObject, lifeTime);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void OnCollisionEnter(Collision collision) {
+        Destroy(gameObject);
     }
-}
+} 

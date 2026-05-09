@@ -7,7 +7,7 @@ public class Gun : MonoBehaviour {
     public Camera playerCamera;
     public FirstPersonController firstPersonController;
 
-    [Header("Held Gun")]
+    [Header("Gun/Light")]
     public GameObject gunObject;
     public Light gunLight;
 
@@ -24,6 +24,15 @@ public class Gun : MonoBehaviour {
     public float shootDistance = 100f;
     public float fireRate = 0.25f;
     public int damage = 1;
+
+    [Header("Bullet")]
+    public GameObject bulletPrefab;
+    public Transform bulletSpawnPoint;
+    public float bulletSpeed = 35f;
+
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip gunShotSound;
 
     private bool hasGun = false;
     private bool lightOn = false;
@@ -109,6 +118,8 @@ public class Gun : MonoBehaviour {
         if (Input.GetMouseButtonDown(0) && Time.time >= nextFireTime) {
             nextFireTime = Time.time + fireRate;
             Shoot();
+            ShootBullet();
+            PlayGunSound();
         }
     }
 
@@ -120,6 +131,41 @@ public class Gun : MonoBehaviour {
 
         if (Physics.Raycast(ray, out RaycastHit hit, shootDistance)) {
             Debug.Log("Shot hit: " + hit.collider.name);
+        }
+    }
+
+    void ShootBullet() {
+        if (bulletPrefab == null || bulletSpawnPoint == null || playerCamera == null)
+            return;
+
+        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+
+        Vector3 targetPoint;
+
+        if (Physics.Raycast(ray, out RaycastHit hit, shootDistance, ~0, QueryTriggerInteraction.Ignore)) {
+            targetPoint = hit.point;
+        } else {
+            targetPoint = ray.origin + ray.direction * shootDistance;
+        }
+
+        Vector3 shootDirection = (targetPoint - bulletSpawnPoint.position).normalized;
+
+        GameObject bullet = Instantiate(
+            bulletPrefab,
+            bulletSpawnPoint.position,
+            Quaternion.LookRotation(shootDirection)
+        );
+
+        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+
+        if (rb != null) {
+            rb.linearVelocity = shootDirection * bulletSpeed;
+        }
+    }
+
+    void PlayGunSound() {
+        if (audioSource != null && gunShotSound != null) {
+            audioSource.PlayOneShot(gunShotSound);
         }
     }
 
