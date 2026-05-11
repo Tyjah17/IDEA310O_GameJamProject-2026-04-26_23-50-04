@@ -132,7 +132,7 @@ Material:
     - _Color6: {r: 0, g: 0, b: 0, a: 0}
     - _DirtColor: {r: 0.5283019, g: 0.4724813, b: 0.43061587, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Emissioncolor: {r: 0, g: 0, b: 0, a: 0}
+    - _Emissioncolor: {r: 1, g: 1, b: 1, a: 0}
     - _MetallColor: {r: 0.53333336, g: 0.54509807, b: 0.5529412, a: 0}
     - _PatternColor: {r: 0.052082583, g: 0.3584906, b: 0.1252014, a: 0}
     - _VizorColor: {r: 1, g: 0.8286379, b: 0.14528298, a: 0}

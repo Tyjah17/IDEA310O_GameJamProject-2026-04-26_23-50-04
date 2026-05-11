@@ -104,7 +104,7 @@ Material:
     - _DstBlend: 0
     - _EmissionFactor: 2
     - _EmissiveFactor: 1
-    - _Glossiness: 0.9
+    - _Glossiness: 2
     - _Metallic: 1
     - _MetalnessFactor: 0
     - _Mode: 0
