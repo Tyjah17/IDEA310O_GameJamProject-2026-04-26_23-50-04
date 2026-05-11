@@ -130,7 +130,10 @@ public class Gun : MonoBehaviour {
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
         if (Physics.Raycast(ray, out RaycastHit hit, shootDistance)) {
-            Debug.Log("Shot hit: " + hit.collider.name);
+            AlienHealth alien = hit.collider.GetComponentInParent<AlienHealth>();
+            if (alien != null) {
+                alien.TakeDamage(damage);
+            }
         }
     }
 

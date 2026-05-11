@@ -28,11 +28,11 @@ public class FlashlightStun : MonoBehaviour {
 
     void Update() {
         if (Input.GetKeyDown(stunKey)) {
-            TryStunGhost();
+            TryStun();
         }
     }
 
-    void TryStunGhost() {
+    void TryStun() {
         if (flashlight == null || !flashlight.enabled)
             return;
         if (currentFlashCharges <= 0){
@@ -47,7 +47,7 @@ public class FlashlightStun : MonoBehaviour {
             GhostAI ghost = hit.collider.GetComponentInParent<GhostAI>();
 
             if (ghost != null) {
-                ghost.StunGhost();
+                ghost.Stun();
                 currentFlashCharges--;
                 UpdateBatteryUI();
             }

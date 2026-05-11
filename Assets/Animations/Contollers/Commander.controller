@@ -21,7 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: c1aa359acd4aee048b27ae8f82975c2b, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: 4280adb7ac1a4884abd9a742bcc10c7b, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -49,7 +49,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 63c6c2861c9324a4c85af923bf5ca531, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: c58729401cb4fcf4880c6545e70f68f5, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -86,7 +86,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FemaleSoldier
+  m_Name: Commander
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: isTalking
@@ -238,7 +238,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 6770683993125dc46a4c146452c3a02b, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: 7a69691b57296e74cac043c92f7b43fb, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

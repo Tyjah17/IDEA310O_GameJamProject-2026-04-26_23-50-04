@@ -75,7 +75,6 @@ public class GhostAI : MonoBehaviour {
         agent.SetDestination(player.position);
 
         if (isBeingWatched) {
-            RotateTowardPlayer();
 
             watchTimer += Time.deltaTime;
             if (watchTimer >= currentWatchLimit) {
@@ -93,23 +92,6 @@ public class GhostAI : MonoBehaviour {
 
     void SetNewWatchTime() {
         currentWatchLimit = Random.Range(minWatchTime, maxWatchTime);
-    }
-
-
-    void RotateTowardPlayer() {
-        Vector3 direction = player.position - transform.position;
-        direction.y = 0f;
-
-        if (direction == Vector3.zero)
-            return;
-
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-
-        transform.rotation = Quaternion.Slerp(
-            transform.rotation,
-            targetRotation,
-            rotationSpeed * Time.deltaTime
-        );
     }
 
     void UpdateAnimation() {
@@ -138,11 +120,11 @@ public class GhostAI : MonoBehaviour {
         }
     }
 
-    public void StunGhost() {
-        StunGhost(stunDuration);
+    public void Stun() {
+        Stun(stunDuration);
     }
 
-    public void StunGhost(float duration) {
+    public void Stun(float duration) {
         isStunned = true;
         stunTimer = duration;
         watchTimer = 0f;
