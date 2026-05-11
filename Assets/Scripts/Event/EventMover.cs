@@ -14,6 +14,9 @@ public class EventMover : MonoBehaviour {
     public bool faceMoveDirection = true;
     public Vector3 rotationOffset = Vector3.zero;
 
+    [Header("Power Outage")]
+    public PowerOutage powerOutage;
+
     public void StartMove() {
         StartCoroutine(MoveRoutine());
     }
@@ -36,6 +39,9 @@ public class EventMover : MonoBehaviour {
             );
 
             yield return null;
+        }
+        if (powerOutage != null) {
+            powerOutage.TriggerOutage();
         }
     }
 }
