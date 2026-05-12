@@ -37,9 +37,14 @@ public class NPCDialogue : MonoBehaviour {
 
     // talking methods
     public void Talk() {
+        if (DialogueLock.anyoneTalking && !IsTalking())
+            return;
         if (!HasDialogueLeft() || isTalking)
             return;
+
+        DialogueLock.anyoneTalking = true;
         isTalking = true;
+
         if (animator != null) {
             animator.SetBool(talkingBoolName, true);
         }
@@ -62,11 +67,11 @@ public class NPCDialogue : MonoBehaviour {
 
     public void StopTalking() {
         isTalking = false;
+        DialogueLock.anyoneTalking = false;
 
         if (animator != null) {
             animator.SetBool(talkingBoolName, false);
         }
-
         if (dialogueUI != null) {
             dialogueUI.gameObject.SetActive(false);
         }

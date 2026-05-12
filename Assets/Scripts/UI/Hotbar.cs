@@ -12,8 +12,16 @@ public class Hotbar : MonoBehaviour {
         public int uses;
     }
 
+    [System.Serializable]
+    public class StackItemData {
+        public string itemName;
+        public int amount;
+    }
+
     public List<string> items = new List<string>();
     public List<KeyData> keys = new List<KeyData>();
+    public List<StackItemData> stackItems = new List<StackItemData>();
+
     public TextMeshProUGUI[] slotTexts;
     public Image[] slotBorders;
 
@@ -31,12 +39,50 @@ public class Hotbar : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Alpha4)) SelectSlot(3);
         if (Input.GetKeyDown(KeyCode.Alpha5)) SelectSlot(4);
     }
-
+    // normal item
     public void AddItem(string itemName) {
         if (items.Count < slotTexts.Length) {
             items.Add(itemName);
             UpdateHotbar();
         }
+    }
+    // stackable item methods
+    public void AddStackableItem(string itemName, int amount) {
+
+        StackItemData existingItem = stackItems.Find(i => i.itemName == itemName);
+
+        if (existingItem != null) {
+            existingItem.amount += amount;
+        } else {
+
+            StackItemData newItem = new StackItemData();
+            newItem.itemName = itemName;
+            newItem.amount = amount;
+
+            stackItems.Add(newItem);
+        }
+
+        UpdateHotbar();
+    }
+
+    public int GetStackItemAmount(string itemName) {
+        StackItemData item = stackItems.Find(i => i.itemName == itemName);
+        return item != null ? item.amount : 0;
+    }
+
+    public bool UseStackItem(string itemName, int amount) {
+        StackItemData item = stackItems.Find(i => i.itemName == itemName);
+
+        if (item == null || item.amount < amount)
+            return false;
+
+        item.amount -= amount;
+
+        if (item.amount <= 0)
+            stackItems.Remove(item);
+
+        UpdateHotbar();
+        return true;
     }
 
     void UpdateHotbar() {
@@ -45,12 +91,20 @@ public class Hotbar : MonoBehaviour {
         }
 
         int slotIndex = 0;
-
+        // items
         for (int i = 0; i < items.Count && slotIndex < slotTexts.Length; i++) {
             slotTexts[slotIndex].text = items[i];
             slotIndex++;
         }
+        // stackable items
+        for (int i = 0; i < stackItems.Count && slotIndex < slotTexts.Length; i++) {
 
+            slotTexts[slotIndex].text =
+                stackItems[i].itemName + "\n" + stackItems[i].amount;
+
+            slotIndex++;
+        }
+        // key items
         for (int i = 0; i < keys.Count && slotIndex < slotTexts.Length; i++) {
             if (keys[i].uses > 1)
             {

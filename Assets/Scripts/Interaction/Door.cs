@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public class Door : MonoBehaviour {
+
     [Header("Door")]
     public bool isOpen = false;
 
@@ -10,14 +11,27 @@ public class Door : MonoBehaviour {
     [Header("Object To Open")]
     public GameObject objectToOpen;
 
-
-    public bool RequiresKey() {
-        return !string.IsNullOrEmpty(requiredKeyId);
+    public string GetInteractText(Hotbar hotbar) {
+        if (isOpen)
+            return "Gate Activated";
+        bool hasKey = hotbar != null && hotbar.HasUsableKey(requiredKeyId);
+        if (hasKey)
+            return "Press E to Activate";
+        return "Need Keycard: " + requiredKeyId;
     }
 
-    public void OpenDoor() {
+    public void Interact(Hotbar hotbar) {
         if (isOpen)
             return;
+        bool hasKey = hotbar != null && hotbar.HasUsableKey(requiredKeyId);
+        if (!hasKey)
+            return;
+        if (hotbar.UseKey(requiredKeyId)) {
+            OpenDoor();
+        }
+    }
+
+    void OpenDoor() {
         isOpen = true;
         if (objectToOpen != null) {
             objectToOpen.SetActive(false);

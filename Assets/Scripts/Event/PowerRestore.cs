@@ -1,41 +1,41 @@
 using UnityEngine;
 using System.Collections;
 
-public class PowerOutage : MonoBehaviour {
+public class PowerRestore : MonoBehaviour {
 
     [Header("Lights Parent")]
     public GameObject lightsParent;
 
-    [Header("Flicker Before Shutdown")]
+    [Header("Restore Flicker")]
     public bool flicker = true;
     public float flickerTime = 2f;
 
-    private bool outageTriggered = false;
+    private bool powerRestored = false;
     private Light[] allLights;
 
     void Start() {
         allLights = lightsParent.GetComponentsInChildren<Light>();
     }
 
-    public void TriggerOutage() {
-        if (outageTriggered)
+    public void RestorePower() {
+        if (powerRestored)
             return;
-        outageTriggered = true;
+        powerRestored = true;
         if (flicker) {
-            StartCoroutine(FlickerLights());
+            StartCoroutine(FlickerLightsOn());
         } else {
-            TurnLightsOff();
+            TurnLightsOn();
         }
     }
 
-    IEnumerator FlickerLights() {
+    IEnumerator FlickerLightsOn() {
         float timer = 0f;
         while (timer < flickerTime) {
             ToggleLights();
             timer += 0.1f;
             yield return new WaitForSeconds(Random.Range(0.05f, 0.2f));
         }
-        TurnLightsOff();
+        TurnLightsOn();
     }
 
     // toggle on the light not the object
@@ -45,9 +45,13 @@ public class PowerOutage : MonoBehaviour {
         }
     }
 
-    void TurnLightsOff() {
+    void TurnLightsOn() {
         foreach (Light lightObject in allLights) {
-            lightObject.enabled = false;
+            lightObject.enabled = true;
         }
+    }
+
+    public bool IsPowerRestored() {
+        return powerRestored;
     }
 }

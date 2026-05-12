@@ -6,7 +6,8 @@ public class PickupItem : MonoBehaviour
         Generic,
         Flashlight,
         Key,
-        Gun
+        Gun,
+        PowerCell
     }
 
     [Header("Item Info")]
@@ -17,6 +18,9 @@ public class PickupItem : MonoBehaviour
     [Header("Key Settings")]
     public string keyId = "";
     public int keyUses = 1;
+
+    [Header("Collectable Settings")]
+    public int collectableAmount = 1;
 
     [Header("UI")]
     public GameObject batteryHUD;
@@ -59,6 +63,11 @@ public class PickupItem : MonoBehaviour
                 if (gun != null)
                 {
                     gun.UnlockGun();
+                }
+                break;
+            case ItemType.PowerCell:
+                if (hotbar != null) {
+                    hotbar.AddStackableItem("Power Cell", collectableAmount);
                 }
                 break;
             default:
