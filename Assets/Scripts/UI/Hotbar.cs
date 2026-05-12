@@ -54,7 +54,7 @@ public class Hotbar : MonoBehaviour {
         for (int i = 0; i < keys.Count && slotIndex < slotTexts.Length; i++) {
             if (keys[i].uses > 1)
             {
-                slotTexts[slotIndex].text = keys[i].displayName + " x" + keys[i].uses;
+                slotTexts[slotIndex].text = keys[i].displayName + "\n" + keys[i].uses;
             } else {
                 slotTexts[slotIndex].text = keys[i].displayName;
             }
