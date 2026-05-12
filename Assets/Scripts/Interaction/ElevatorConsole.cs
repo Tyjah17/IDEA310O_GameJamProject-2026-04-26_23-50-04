@@ -11,6 +11,11 @@ public class ElevatorConsole : MonoBehaviour {
     [Header("Object To Open")]
     public GameObject objectToOpen;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip activateSound;
+    public AudioClip deniedSound;
+
     public string GetInteractText() {
         if (activated)
             return "Elevator Console Online";
@@ -22,10 +27,20 @@ public class ElevatorConsole : MonoBehaviour {
     public void ActivateConsole() {
         if (activated)
             return;
-        if (powerRestore == null || !powerRestore.IsPowerRestored())
+
+        if (powerRestore == null || !powerRestore.IsPowerRestored()) {
+            if (audioSource != null && deniedSound != null) {
+                audioSource.PlayOneShot(deniedSound);
+            }
             return;
+        }
+
         activated = true;
-        if (objectToOpen != null)
+        if (audioSource != null && activateSound != null) {
+            audioSource.PlayOneShot(activateSound);
+        }
+        if (objectToOpen != null) {
             objectToOpen.SetActive(false);
+        }
     }
 }

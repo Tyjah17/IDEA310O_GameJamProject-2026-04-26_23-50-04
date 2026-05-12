@@ -15,6 +15,10 @@ public class PowerCell : MonoBehaviour {
     public GameObject[] screensToTurnOff;
     public GameObject[] screensToTurnOn;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip allPowerCellsInstalledSound;
+
     public string GetInteractText(Hotbar hotbar) {
         if (hasPowerCell)
             return "Power Cell Installed";
@@ -38,6 +42,9 @@ public class PowerCell : MonoBehaviour {
         foreach (PowerCell cell in allPowerCells) {
             if (cell == null || !cell.hasPowerCell)
                 return;
+        }
+        if (audioSource != null && allPowerCellsInstalledSound != null) {
+            audioSource.PlayOneShot(allPowerCellsInstalledSound);
         }
         foreach (GameObject screen in screensToTurnOff) {
             if (screen != null)

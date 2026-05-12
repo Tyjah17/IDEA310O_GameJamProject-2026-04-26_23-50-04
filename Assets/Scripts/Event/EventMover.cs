@@ -17,6 +17,9 @@ public class EventMover : MonoBehaviour {
     [Header("Power Outage")]
     public PowerOutage powerOutage;
 
+    [Header("Life Support")]
+    public RepairLifeSupport lifeSupport;
+
     public void StartMove() {
         StartCoroutine(MoveRoutine());
     }
@@ -42,6 +45,9 @@ public class EventMover : MonoBehaviour {
         }
         if (powerOutage != null) {
             powerOutage.TriggerOutage();
+        }
+        if (lifeSupport != null) {
+            lifeSupport.StartCrashEvent();
         }
     }
 }
