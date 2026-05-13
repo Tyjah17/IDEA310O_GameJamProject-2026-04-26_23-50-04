@@ -134,6 +134,10 @@ public class Gun : MonoBehaviour {
             if (alien != null) {
                 alien.TakeDamage(damage);
             }
+            BossAI boss = hit.collider.GetComponentInParent<BossAI>();
+            if (boss != null) {
+                boss.TakeDamage(damage);
+            }
         }
     }
 

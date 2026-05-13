@@ -72,7 +72,8 @@ public class RepairLifeSupport : MonoBehaviour {
         }
         // play repair sound
         if (repairAudioSource != null && repairSound != null) {
-            repairAudioSource.PlayOneShot(repairSound);
+            repairAudioSource.clip = repairSound;
+            repairAudioSource.Play();
             repairAudioSource.loop = true;
         }
         // effects
